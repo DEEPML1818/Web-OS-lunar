@@ -9,7 +9,7 @@ function initWindowManager() {
         let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
 
         header.addEventListener('pointerdown', (e) => {
-            // Bring clicked window to top stack
+            // Bring clicked window to top z-index stack
             activeZIndex++;
             win.style.zIndex = activeZIndex;
 
@@ -48,10 +48,6 @@ function openWindow(id) {
 function closeWindow(id) {
     const win = document.getElementById(id);
     if (win) win.style.display = 'none';
-}
-
-function minimizeWindow(id) {
-    closeWindow(id);
 }
 
 document.addEventListener('DOMContentLoaded', initWindowManager);

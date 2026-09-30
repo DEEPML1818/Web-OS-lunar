@@ -8,14 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') {
             const command = input.value.trim().toLowerCase();
 
-            // Echo command
             log.innerHTML += `<div><span class="prompt">artemis@gateway:~$</span> ${escapeHTML(input.value)}</div>`;
             input.value = '';
 
-            // Execute command logic
             executeCommand(command, log);
 
-            // Auto-scroll to bottom
             const contentArea = log.parentElement;
             contentArea.scrollTop = contentArea.scrollHeight;
         }
@@ -26,12 +23,12 @@ function executeCommand(cmd, log) {
     switch (cmd) {
         case 'help':
             log.innerHTML += `
-        <div style="color: var(--text-dim); margin: 4px 0 8px 0;">
+        <div style="color: var(--text-muted); margin: 4px 0 8px 0;">
           Available System Commands:<br>
-          &nbsp;&nbsp;<b style="color:var(--text-main)">status</b>&nbsp;&nbsp;&nbsp;&nbsp;- Output link latency and satellite telemetry<br>
-          &nbsp;&nbsp;<b style="color:var(--text-main)">apod</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Fetch daily metadata from NASA REST API<br>
-          &nbsp;&nbsp;<b style="color:var(--text-main)">telemetry</b> - Open lunar landing site logs<br>
-          &nbsp;&nbsp;<b style="color:var(--text-main)">clear</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Clear shell terminal screen
+          &nbsp;&nbsp;<b style="color:var(--text-main)">status</b>&nbsp;&nbsp;&nbsp;&nbsp;- Output orbital link latency & satellite telemetry<br>
+          &nbsp;&nbsp;<b style="color:var(--text-main)">apod</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Fetch daily astronomy data from NASA REST API<br>
+          &nbsp;&nbsp;<b style="color:var(--text-main)">telemetry</b> - Open landing site telemetry logs<br>
+          &nbsp;&nbsp;<b style="color:var(--text-main)">clear</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Clear terminal screen
         </div>`;
             break;
 
@@ -50,23 +47,20 @@ function executeCommand(cmd, log) {
             break;
 
         case 'apod':
-            log.innerHTML += `<div>[NASA REST API] Querying NASA APOD endpoint...</div>`;
+            log.innerHTML += `<div>[NASA REST API] Fetching APOD dataset...</div>`;
             fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
-                .then((res) => {
-                    if (!res.ok) throw new Error('Network response failure');
-                    return res.json();
-                })
+                .then((res) => res.json())
                 .then((data) => {
                     log.innerHTML += `
             <div style="border-left: 2px solid var(--accent-green); padding-left: 8px; margin: 6px 0;">
               <b style="color: #fff;">${escapeHTML(data.title)}</b> (${data.date})<br>
-              <span style="color: var(--text-dim); font-size: 0.75rem;">${escapeHTML(data.explanation.slice(0, 160))}...</span>
+              <span style="color: var(--text-muted); font-size: 0.75rem;">${escapeHTML(data.explanation.slice(0, 160))}...</span>
             </div>`;
                     const contentArea = log.parentElement;
                     contentArea.scrollTop = contentArea.scrollHeight;
                 })
                 .catch(() => {
-                    log.innerHTML += `<div style="color: #ff6b6b;">[ERR] Unable to reach NASA REST service. Check network route.</div>`;
+                    log.innerHTML += `<div style="color: #ff6b6b;">[ERR] Unable to reach NASA REST endpoint.</div>`;
                 });
             break;
 
@@ -76,7 +70,7 @@ function executeCommand(cmd, log) {
 
         default:
             if (cmd !== '') {
-                log.innerHTML += `<div style="color: var(--text-dim);">Command '${escapeHTML(cmd)}' not found. Type 'help'.</div>`;
+                log.innerHTML += `<div style="color: var(--text-muted);">Command '${escapeHTML(cmd)}' not recognized. Type 'help'.</div>`;
             }
             break;
     }

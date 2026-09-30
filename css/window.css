@@ -3,21 +3,28 @@
     display: flex;
     flex-direction: column;
     background: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-window);
     overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.os-window:focus-within {
+    border-color: var(--panel-border-focus);
+    box-shadow: var(--shadow-window-focus);
 }
 
 .window-header {
-    height: 32px;
+    height: 36px;
     background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--panel-border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 12px;
     cursor: grab;
     touch-action: none;
 }
@@ -27,25 +34,43 @@
 }
 
 .window-title {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 600;
     color: var(--text-main);
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
+}
+
+.window-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .window-actions button {
-    padding: 2px 6px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
     font-size: 0.75rem;
-    color: var(--text-dim);
+    color: var(--text-muted);
+    transition: all 0.15s ease;
 }
 
 .window-actions button:hover {
     color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.window-actions .btn-close:hover {
+    background: rgba(248, 81, 73, 0.2);
+    color: #f85149;
 }
 
 .window-content {
     flex: 1;
-    padding: 12px;
+    padding: 16px;
     overflow: auto;
 }
 
@@ -53,53 +78,60 @@
     padding: 0;
 }
 
-/* Terminal Styling */
 .terminal-mode {
-    background: #090d13;
+    background: #06090e;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--accent-green);
     display: flex;
     flex-direction: column;
+    line-height: 1.5;
+}
+
+.prompt {
+    color: var(--accent-blue);
+    font-weight: 600;
 }
 
 .cli-input-row {
     display: flex;
     gap: 8px;
+    margin-top: 4px;
 }
 
 .cli-input-row input {
     background: transparent;
     border: none;
     outline: none;
-    color: inherit;
+    color: var(--text-main);
     font-family: inherit;
     font-size: inherit;
     flex: 1;
 }
 
-/* Telemetry Card Styling */
+.telemetry-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
 .telemetry-card h4 {
-    font-size: 0.85rem;
-    color: var(--accent-cyan);
-    margin-bottom: 2px;
+    font-size: 0.88rem;
+    color: var(--accent-blue);
+    margin-bottom: 4px;
 }
 
 .telemetry-card .coords {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    margin-bottom: 6px;
+    font-size: 0.72rem;
+    color: var(--accent-orange);
+    margin-bottom: 8px;
 }
 
 .telemetry-card .desc {
     font-size: 0.8rem;
-    line-height: 1.4;
-}
-
-.dim-divider {
-    border: 0;
-    height: 1px;
-    background: var(--border-color);
-    margin: 10px 0;
+    color: var(--text-muted);
+    line-height: 1.45;
 }

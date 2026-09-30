@@ -5,10 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LUNA-OS // Orbital Workstation</title>
+
+    <!-- Modular Stylesheets -->
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/desktop.css" />
     <link rel="stylesheet" href="css/window.css" />
-    <!-- Three.js CDN for App 1 -->
+
+    <!-- Three.js Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
@@ -24,6 +27,7 @@
             <button class="top-link" onclick="openWindow('win-telemetry')">Telemetry</button>
         </div>
         <div class="top-right">
+            <div class="status-badge"><span class="status-dot"></span> LINK ACTIVE</div>
             <span id="system-clock">00:00:00 UTC</span>
         </div>
     </header>
@@ -52,7 +56,7 @@
             <div class="window-header">
                 <span class="window-title">NASA LRO Surface Viewport</span>
                 <div class="window-actions">
-                    <button class="btn-min" onclick="minimizeWindow('win-globe')">—</button>
+                    <button class="btn-min" onclick="closeWindow('win-globe')">—</button>
                     <button class="btn-close" onclick="closeWindow('win-globe')">✕</button>
                 </div>
             </div>
@@ -62,7 +66,7 @@
         </div>
 
         <!-- Window 2: Mission CLI Terminal -->
-        <div id="win-cli" class="os-window" style="top: 100px; left: 320px; width: 520px; height: 340px;">
+        <div id="win-cli" class="os-window" style="top: 100px; left: 340px; width: 540px; height: 360px;">
             <div class="window-header">
                 <span class="window-title">luna-cli</span>
                 <div class="window-actions">
@@ -70,7 +74,9 @@
                 </div>
             </div>
             <div class="window-content terminal-mode">
-                <div id="cli-log">LUNA-OS Kernel v1.0.0 (x86_64-luna-web)<br>Type 'help' for command directory.<br><br>
+                <div id="cli-log">
+                    LUNA-OS Kernel v1.0.0 (x86_64-luna-web)<br>
+                    Type '<span style="color:var(--text-main)">help</span>' for command directory.<br><br>
                 </div>
                 <div class="cli-input-row">
                     <span class="prompt">artemis@gateway:~$</span>
@@ -81,36 +87,26 @@
 
         <!-- Window 3: Site Telemetry -->
         <div id="win-telemetry" class="os-window"
-            style="top: 140px; left: 180px; width: 440px; height: 360px; display: none;">
+            style="top: 140px; left: 200px; width: 460px; height: 380px; display: none;">
             <div class="window-header">
                 <span class="window-title">Site Telemetry Logs</span>
                 <div class="window-actions">
                     <button class="btn-close" onclick="closeWindow('win-telemetry')">✕</button>
                 </div>
             </div>
-            <div class="window-content">
-                <div class="telemetry-card">
-                    <h4>📍 Apollo 11 — Tranquility Base</h4>
-                    <p class="coords">0.67408° N, 23.47297° E</p>
-                    <p class="desc">First crewed landing site. Passive Seismic Experiment Package and Laser Ranging
-                        Retroreflector deployed.</p>
-                </div>
-                <hr class="dim-divider" />
-                <div class="telemetry-card">
-                    <h4>📍 Artemis III — South Pole Rim</h4>
-                    <p class="coords">89.9° S, 0.0° E</p>
-                    <p class="desc">Target site for subsurface ice prospecting and solar radiation telemetry in
-                        permanently shadowed regions.</p>
-                </div>
+            <div class="window-content" id="telemetry-content">
+                <!-- Telemetry JS Populates content -->
             </div>
         </div>
 
     </div>
 
+    <!-- Modular Scripts -->
     <script src="js/windowManager.js"></script>
     <script src="js/desktop.js"></script>
     <script src="js/apps/lunar3d.js"></script>
     <script src="js/apps/terminal.js"></script>
+    <script src="js/apps/telemetry.js"></script>
 </body>
 
 </html>

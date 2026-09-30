@@ -1,74 +1,114 @@
-/* Top System Bar */
 #top-bar {
-    height: 32px;
+    height: 36px;
     background: var(--panel-bg);
-    border-bottom: 1px solid var(--border-color);
-    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--panel-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 12px;
-    font-size: 0.8rem;
-    z-index: 9999;
+    padding: 0 16px;
+    font-size: 0.82rem;
+    z-index: 99999;
     position: relative;
 }
 
 .top-left {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
 }
 
 .os-logo {
     font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.5px;
+    color: var(--text-main);
+    letter-spacing: 0.6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .top-link {
-    color: var(--text-dim);
-    transition: color 0.15s ease;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.15s ease;
 }
 
 .top-link:hover {
     color: var(--text-main);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .top-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-family: var(--font-mono);
-    color: var(--accent-cyan);
-    font-size: 0.75rem;
+    font-size: 0.78rem;
 }
 
-/* Desktop Workspace */
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-green);
+    background: rgba(63, 185, 80, 0.1);
+    padding: 2px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(63, 185, 80, 0.2);
+    font-size: 0.72rem;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--accent-green);
+}
+
+#system-clock {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
 #desktop {
-    padding: 24px;
+    padding: 28px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 90px);
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, 96px);
+    grid-auto-rows: 100px;
+    gap: 24px;
 }
 
 .app-shortcut {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px;
-    border-radius: 6px;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.15s ease;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
 }
 
 .app-shortcut:hover {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
 }
 
 .icon-box {
-    font-size: 1.8rem;
-    margin-bottom: 6px;
+    font-size: 2rem;
+    margin-bottom: 8px;
 }
 
 .app-shortcut span {
     font-size: 0.75rem;
+    font-weight: 500;
     color: var(--text-main);
     text-align: center;
 }

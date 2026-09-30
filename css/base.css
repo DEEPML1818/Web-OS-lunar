@@ -1,13 +1,22 @@
 :root {
-    --bg-color: #0d1117;
-    --panel-bg: rgba(22, 27, 34, 0.85);
-    --border-color: rgba(255, 255, 255, 0.12);
-    --text-main: #c9d1d9;
-    --text-dim: #8b949e;
-    --accent-cyan: #58a6ff;
+    --bg-color: #080c14;
+    --panel-bg: rgba(15, 23, 42, 0.78);
+    --panel-border: rgba(255, 255, 255, 0.1);
+    --panel-border-focus: rgba(88, 166, 255, 0.4);
+
+    --text-main: #f0f6fc;
+    --text-muted: #8b949e;
+    --text-dim: #484f58;
+    --accent-blue: #58a6ff;
+    --accent-cyan: #39c5bb;
     --accent-green: #3fb950;
+    --accent-orange: #f0883e;
+
     --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-mono: "Fira Code", "JetBrains Mono", Consolas, monospace;
+    --font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+
+    --shadow-window: 0 16px 32px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    --shadow-window-focus: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--panel-border-focus);
 }
 
 * {
@@ -21,9 +30,31 @@ body {
     height: 100vh;
     overflow: hidden;
     background-color: var(--bg-color);
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.8) 0%, transparent 50%);
     color: var(--text-main);
     font-family: var(--font-sans);
     user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 button {
@@ -32,4 +63,5 @@ button {
     background: none;
     border: none;
     cursor: pointer;
+    outline: none;
 }
