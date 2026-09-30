@@ -1,0 +1,105 @@
+.os-window {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.window-header {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    cursor: grab;
+    touch-action: none;
+}
+
+.window-header:active {
+    cursor: grabbing;
+}
+
+.window-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: 0.3px;
+}
+
+.window-actions button {
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
+
+.window-actions button:hover {
+    color: #ffffff;
+}
+
+.window-content {
+    flex: 1;
+    padding: 12px;
+    overflow: auto;
+}
+
+.window-content.no-padding {
+    padding: 0;
+}
+
+/* Terminal Styling */
+.terminal-mode {
+    background: #090d13;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-green);
+    display: flex;
+    flex-direction: column;
+}
+
+.cli-input-row {
+    display: flex;
+    gap: 8px;
+}
+
+.cli-input-row input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    flex: 1;
+}
+
+/* Telemetry Card Styling */
+.telemetry-card h4 {
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+    margin-bottom: 2px;
+}
+
+.telemetry-card .coords {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+}
+
+.telemetry-card .desc {
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.dim-divider {
+    border: 0;
+    height: 1px;
+    background: var(--border-color);
+    margin: 10px 0;
+}
